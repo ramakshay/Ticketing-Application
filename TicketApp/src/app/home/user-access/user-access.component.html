@@ -1,0 +1,27 @@
+<div class="mt-4">
+  <h3>User Data</h3>
+</div>
+<div class="row mt-3">
+
+    <div *ngFor="let user of usersData;index as i" class="col-sm-5 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{user.firstName}}</h5>
+          <p class="card-text">Role: {{user.role}}</p>
+          <p class="card-text">Email: {{user.email}}</p>
+          <div *ngIf="!hiddenValue[i]">
+            <a (click)="hiddenValue[i]=!hiddenValue[i]" class="btn btn-primary">Edit</a>
+          </div>
+          <div *ngIf="hiddenValue[i]">
+
+            <label for="role">Role
+              <label for="admin"><input type="radio" name="role" value="admin" (change)="onSubmit(user._id,$event,i);hiddenValue[i]=!hiddenValue[i]"> Admin </label>
+              <label for="admin"><input type="radio" name="role" value="developer" (change)="onSubmit(user._id,$event,i);hiddenValue[i]=!hiddenValue[i]"> Developer</label>
+            </label><br>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+  </div>

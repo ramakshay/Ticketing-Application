@@ -1,0 +1,115 @@
+<div class="container">
+    <form class="row" [formGroup]="signupForm" (ngSubmit)="onSubmit">
+        <div class="col-sm-6 my-2">
+            <label for="firstName">First Name <span class="text-danger">*</span></label>
+            <input class="form-control" formControlName="firstName" type="text" name="firstName"  placeholder="Enter First Name">
+            <div *ngIf="signupFormControls.firstName?.touched ">
+                <div class="text-danger" *ngIf="signupFormControls.firstName.errors?.required">
+                    Name Required
+                </div>
+                <div class="text-danger" *ngIf="signupFormControls.firstName.errors?.minlength">
+                    Atleast 5 letters required
+                </div>
+                <div class="text-danger" *ngIf="signupFormControls.firstName.errors?.maxlength">
+                    Maximum of 30 charecters accepted
+                </div>
+                <div class="text-danger" *ngIf="signupFormControls.firstName.errors?.pattern">
+                    Name should contain only charecters
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 my-2">
+            <label for="lastName">Last Name <span class="text-danger">*</span></label>
+            <input class="form-control" formControlName="lastName" type="text" name="lastName" placeholder="Enter Last Name">
+            <div *ngIf="signupFormControls.lastName?.touched">
+                <div class="text-danger" *ngIf="signupFormControls.lastName.errors?.required">
+                    Name Required
+                </div>
+                <div class="text-danger" *ngIf="signupFormControls.lastName.errors?.minlength">
+                    Atleast 5 letters required
+                </div>
+                <div class="text-danger" *ngIf="signupFormControls.lastName.errors?.maxlength">
+                    Maximum of 30 charecters accepted
+                </div>
+                <div class="text-danger" *ngIf="signupFormControls.lastName.errors?.pattern">
+                    Name should contain only charecters
+                </div>
+           </div>
+        </div>
+        <div class="col-sm-6 my-2">
+            <label for="email">Email <span class="text-danger">*</span></label>
+            <input class="form-control" formControlName="email" type="email" name="email" placeholder="Enter email">
+            <div *ngIf="signupFormControls.email?.touched">
+                <div class="text-danger" *ngIf="signupFormControls.email.errors?.required">
+                    Email Required
+                </div>
+                <div class="text-danger" *ngIf="signupFormControls.email.errors?.email">
+                    Invalid Email
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 my-2">
+            <label for="password">Password <span class="text-danger">*</span></label>
+            <input class="form-control" formControlName="password" type="password" name="password" placeholder="Enter Password">
+            <div *ngIf="signupFormControls.password?.touched">
+                <div class="text-danger" *ngIf="signupFormControls.password.errors?.required">
+                    Password Required
+                </div>
+            </div>
+        </div>
+        <div class="row my-2" formGroupName="address">
+            <div class="col-sm-6">
+                <label for="Street">Street</label>
+                <input class="form-control" formControlName="street" type="text" name="Street" placeholder="Enter Street">
+                <div *ngIf="signupFormControls.address.controls.street?.touched">
+                    <div class="text-danger" *ngIf="signupFormControls.address.controls.street?.required">
+                        Street name Required
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="Pincode">Pincode</label>
+                <input class="form-control" formControlName="pincode" type="text" name="Pincode" placeholder="Enter Pincode">
+                <div *ngIf="signupFormControls.pincode?.touched">
+                    <div class="text-danger" *ngIf="signupFormControls.pincode.errors?.required">
+                        Pincode Required
+                    </div>
+                    <div class="text-danger" *ngIf="signupFormControls.pincode.errors?.minlength">
+                        Pincode must be 6 digits
+                    </div>
+                    <div class="text-danger" *ngIf="signupFormControls.pincode.errors?.maxlength">
+                        Pincode must be 6 digits
+                    </div>
+                    <div class="text-danger" *ngIf="signupFormControls.pincode.errors?.pattern">
+                        Pincode should contain only numbers
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 my-2">
+            <label for="Phone">Phone <span class="text-danger">*</span></label>
+            <input class="form-control" formControlName="phone" type="text" name="Phone" placeholder="Enter Phone no">
+            <div *ngIf="signupFormControls.phone?.touched">
+                <div class="text-danger" *ngIf="signupFormControls.phone.errors?.required">
+                    Phone Number Required
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 my-2">
+            <label for="image">Photo <span class="text-danger">*</span></label>
+            <input class="form-control" formControlName="image" accept=".png" (change)="onSelectFile($event)" type="file" name="image">
+        </div>
+        <div class="col-sm-12 my-1">
+            <label for="role">Role <span class="text-danger">*</span></label><br>
+            <label for="admin"><input type="radio" formControlName="role" name="role" value="admin">Admin</label><br>
+            <label for="developer"><input type="radio" formControlName="role" name="role" value="developer">Developer</label>
+            
+        </div>
+        <div class="col-sm-12 my-3">
+            <p>Fields with <span class="text-danger">*</span> are mandatory</p>
+        </div>
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary" (click) = "onSubmit()">Submit</button>
+        </div>
+    </form>
+</div>

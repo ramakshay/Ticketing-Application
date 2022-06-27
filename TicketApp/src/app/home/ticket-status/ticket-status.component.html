@@ -1,0 +1,26 @@
+<div class="justify-content-center mt-4">
+    <h4>{{title}}</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td class="font-weight-normal">No of Tickets</td>
+                <td>{{this.totalTickets}}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-normal">No of yet to start tickets</td>
+                <td>{{this.startTickets}}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-normal">No of inprogress tickets</td>
+                <td>{{this.inProgressTickets}}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-normal">No of closed tickets</td>
+                <td>{{this.completedTickets}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-primary" (click) = "transferData()">Click</button>
+</div>
+

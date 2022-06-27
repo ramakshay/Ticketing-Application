@@ -1,0 +1,20 @@
+<div class="row full-height">
+    <div class="col-sm-4 bg-dark">
+        <ul class="bg-dark ml-auto">
+            <li class="mt-3 mb-3">
+                <a class="text-decoration-none text-light" (click)="dashboard()"> Dashboard</a>
+            </li>
+            <li class="mb-3">
+                <a class="text-decoration-none text-light" (click)="tickets()">Tickets Details</a>
+            </li>
+            <li class="mb-3">
+                <a class="text-decoration-none text-light" (click)="users()">User Access</a>
+            </li>
+        </ul>
+    
+    </div>
+    <div class="col-sm-8">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+

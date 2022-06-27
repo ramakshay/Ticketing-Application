@@ -1,0 +1,59 @@
+
+<ng-template #template>
+  <div class="modal-header">
+     <h4 class="modal-title pull-left">New Ticket</h4>
+     <button type="button" class="close pull-right btn" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">×</span>
+     </button>
+  </div>
+  <div class="modal-body">
+    <form class="form-group" [formGroup]="ticketForm">
+      <div class="col-sm-12">
+        <label for="ticketId">Ticket ID</label>
+        <input class="form-control" formControlName = "ticketId" type="text">
+      </div><br>
+      <div class="col-sm-12">
+        <label for="ticketName">Ticket Name</label>
+        <input class="form-control" formControlName = "ticketName" type="text">
+      </div><br>
+      <div>
+        <label for="description">Description</label>
+        <input class="form-control" formControlName = "description" type="text">
+      </div><br>
+      <div>
+        <label for="status">Ticket Status</label><br>
+          <label for="started"><input type="radio" formControlName="status" value="start"> Yet to start</label><br>
+          <label for="inprogress"><input type="radio" formControlName="status" value="inprogress"> In progress</label><br>
+          <label for="completed"><input type="radio" formControlName="status" value="completed"> Completed</label>
+      </div>
+  </form>
+  </div>
+  <div class="modal-footer">
+     <button type="button" class="btn btn-primary" (click)="addTicket();modalRef.hide()">Submit</button>
+  </div>
+</ng-template>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Ticket id</th>
+        <th scope="col">Ticket Name</th>
+        <th scope="col">Ticket Description</th>
+        <th scope="col">Ticket Status</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="tickets.length > 0">
+      <tr *ngFor="let ticket of tickets | paginate: { itemsPerPage: 5, currentPage: p }">
+          <td><a href="javascript:void(0)" routerLink="/home/ticket-view/{{ticket?._id}}" routerLinkActive="active">{{ticket?.ticketId}}</a></td>
+          <td>{{ticket?.ticketName}}</td>
+          <td>{{ticket?.description}}</td>
+          <td>{{ticket?.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-right">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+
+  <button type="button" class="btn btn-primary" (click)="openModal(template)">Add ticket</button>
+
